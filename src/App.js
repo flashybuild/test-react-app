@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import pokemons from './pokemons.json'
 
-const PokemonRow = ({pokemon}) => (
+// function component
+const PokemonRow = ({ pokemon }) => (
   <tr>
-  <td>{pokemon.name.english}</td>
-  <td>{pokemon.name.japanese}</td>
-  <td>{pokemon.type.join(' & ')}</td>
-</tr>
+    <td>{pokemon.name.english}</td>
+    <td>{pokemon.name.japanese}</td>
+    <td>{pokemon.type.join(' & ')}</td>
+  </tr>
 )
 
-
 function App() {
+  // state
+  const [filter, filterSet] = useState('')
+
   return (
     <div
       style={{
@@ -21,7 +24,12 @@ function App() {
         paddingLeft: '1.2rem',
         border: '1px solid',
       }}>
-      <h1 className='title'>Hello</h1>
+      <h1 className='title'>Search a pokemon</h1>
+      <input
+        type='text'
+        value={filter}
+        onChange={(event) => filterSet(event.target.value)}
+      />
       <table>
         <thead>
           <tr>
@@ -31,9 +39,14 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {pokemons.slice(12, 20).map((pokemon) => (
-            <PokemonRow pokemon={pokemon} key={pokemon.id} />
-          ))}
+          { pokemons
+            .filter((pokemon) => pokemon.name.english
+            .toLocaleLowerCase()
+            .includes(filter.toLocaleLowerCase()))
+            .slice(0, 30)
+            .map((pokemon) => (
+              <PokemonRow pokemon={pokemon} key={pokemon.id} />
+            ))}
         </tbody>
       </table>
     </div>

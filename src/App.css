@@ -8,3 +8,7 @@ th {
   text-align: left;
   font-size: x-large;
 }
+input {
+  padding: 0.3rem;
+  border: 1px solid green;
+}
