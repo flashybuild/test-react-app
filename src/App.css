@@ -12,3 +12,14 @@ input {
   padding: 0.3rem;
   border: 1px solid green;
 }
+input:focus{
+  background-color: rgb(192, 29, 165);
+}
+button {
+  padding: 7px;
+  border-radius: 10%;
+  border: 1px solid darkolivegreen;
+}
+button:hover{
+  background-color: darkolivegreen;
+}
