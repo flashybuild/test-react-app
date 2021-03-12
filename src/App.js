@@ -17,6 +17,25 @@ const PokemonRow = (props) => {
   )
 }
 
+const PokemonInfo = (props) => {
+  const { selectedPk } = props
+
+  return (
+    <div>
+      <h2>{selectedPk.name.english}</h2>
+
+      <table>
+        {Object.keys(selectedPk.base).map((key) => (
+          <tr key={key}>
+            <td>{key}</td>
+            <td>{selectedPk.base[key]}</td>
+          </tr>
+        ))}
+      </table>
+    </div>
+  )
+}
+
 function App() {
   // states
   const [keyfilter, keyfilterSet] = useState('')
@@ -66,11 +85,7 @@ function App() {
               ))}
           </tbody>
         </table>
-        {selectedPokemon && (
-          <div>
-            <h1>{selectedPokemon.name.english}</h1>
-          </div>
-        )}
+        {selectedPokemon && <PokemonInfo selectedPk={selectedPokemon} />}
       </div>
     </div>
   )
