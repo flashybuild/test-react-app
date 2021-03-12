@@ -4,22 +4,23 @@ import pokemons from './pokemons.json'
 
 // function component
 const PokemonRow = (props) => {
-  const { pokemonProp } = props
-return (
-  <tr>
-    <td>{pokemonProp.name.english}</td>
-    <td>{pokemonProp.name.japanese}</td>
-    <td>{pokemonProp.type.join(' & ')}</td>
-    <td>
-      <button>Select</button>
-    </td>
-  </tr>
-)}
+  const { pokemonProp, onSelect } = props
+  return (
+    <tr>
+      <td>{pokemonProp.name.english}</td>
+      <td>{pokemonProp.name.japanese}</td>
+      <td>{pokemonProp.type.join(' & ')}</td>
+      <td>
+        <button onClick={() => onSelect(pokemonProp)}>Select</button>
+      </td>
+    </tr>
+  )
+}
 
 function App() {
   // states
   const [keyfilter, keyfilterSet] = useState('')
-
+  const [selectedPokemon, selectedPokemonSet] = useState(null)
   return (
     <div
       style={{
@@ -33,6 +34,7 @@ function App() {
         value={keyfilter}
         onChange={(event) => keyfilterSet(event.target.value)}
       />
+
       <div
         style={{
           display: 'grid',
@@ -56,10 +58,19 @@ function App() {
               )
               .slice(0, 30)
               .map((pokemon) => (
-                <PokemonRow pokemonProp={pokemon} key={pokemon.id} />
+                <PokemonRow
+                  pokemonProp={pokemon}
+                  onSelect={(pokemonProp) => selectedPokemonSet(pokemonProp)}
+                  key={pokemon.id}
+                />
               ))}
           </tbody>
         </table>
+        {selectedPokemon && (
+          <div>
+            <h1>{selectedPokemon.name.english}</h1>
+          </div>
+        )}
       </div>
     </div>
   )
