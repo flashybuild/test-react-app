@@ -4,14 +4,14 @@ import pokemons from './pokemons.json'
 
 // function component
 const PokemonRow = (props) => {
-  const { pokemonProp, onSelect } = props
+  const { pokemonProp, handleSelect } = props
   return (
     <tr>
       <td>{pokemonProp.name.english}</td>
       <td>{pokemonProp.name.japanese}</td>
       <td>{pokemonProp.type.join(' & ')}</td>
       <td>
-        <button onClick={() => onSelect(pokemonProp)}>Select</button>
+        <button onClick={() => handleSelect(pokemonProp)}>Select</button>
       </td>
     </tr>
   )
@@ -60,7 +60,7 @@ function App() {
               .map((pokemon) => (
                 <PokemonRow
                   pokemonProp={pokemon}
-                  onSelect={(pokemonProp) => selectedPokemonSet(pokemonProp)}
+                  handleSelect={(poPp) => selectedPokemonSet(poPp)}
                   key={pokemon.id}
                 />
               ))}
