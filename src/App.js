@@ -23,14 +23,15 @@ const PokemonInfo = (props) => {
   return (
     <div>
       <h2>{selectedPk.name.english}</h2>
-
-      <table>
+       <table>
+         <tbody>
         {Object.keys(selectedPk.base).map((key) => (
           <tr key={key}>
             <td>{key}</td>
             <td>{selectedPk.base[key]}</td>
           </tr>
         ))}
+        </tbody>
       </table>
     </div>
   )
