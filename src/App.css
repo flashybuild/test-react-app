@@ -23,3 +23,11 @@ button {
 button:hover{
   background-color: darkolivegreen;
 }
+.japa {
+  display: none;
+}
+@media(min-width:460px){
+ .japa{
+   display: inline;
+ }
+}

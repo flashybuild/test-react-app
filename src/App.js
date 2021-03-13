@@ -8,7 +8,7 @@ const PokemonRow = (props) => {
   return (
     <tr>
       <td>{pokemonProp.name.english}</td>
-      <td>{pokemonProp.name.japanese}</td>
+      <td className='japa'>{pokemonProp.name.japanese}</td>
       <td>{pokemonProp.type.join(' & ')}</td>
       <td>
         <button onClick={() => handleSelect(pokemonProp)}>Select</button>
@@ -23,14 +23,14 @@ const PokemonInfo = (props) => {
   return (
     <div>
       <h2>{selectedPk.name.english}</h2>
-       <table>
-         <tbody>
-        {Object.keys(selectedPk.base).map((key) => (
-          <tr key={key}>
-            <td>{key}</td>
-            <td>{selectedPk.base[key]}</td>
-          </tr>
-        ))}
+      <table>
+        <tbody>
+          {Object.keys(selectedPk.base).map((key) => (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{selectedPk.base[key]}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
@@ -65,7 +65,7 @@ function App() {
           <thead>
             <tr>
               <th>Name</th>
-              <th>In japanese</th>
+              <th className='japa'>In japanese</th>
               <th>Type</th>
             </tr>
           </thead>
