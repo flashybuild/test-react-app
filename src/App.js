@@ -17,18 +17,17 @@ const PokemonRow = (props) => {
   )
 }
 
-const PokemonInfo = (props) => {
-  const { selectedPk } = props
-
+const PokemonInfo = ({ selectedPokemon } ) => {
+ 
   return (
     <div>
-      <h2>{selectedPk.name.english}</h2>
+      <h2>{selectedPokemon.name.english}</h2>
       <table>
         <tbody>
-          {Object.keys(selectedPk.base).map((key) => (
+          {Object.keys(selectedPokemon.base).map((key) => (
             <tr key={key}>
               <td>{key}</td>
-              <td>{selectedPk.base[key]}</td>
+              <td>{selectedPokemon.base[key]}</td>
             </tr>
           ))}
         </tbody>
@@ -86,7 +85,7 @@ function App() {
               ))}
           </tbody>
         </table>
-        {selectedPokemon && <PokemonInfo selectedPk={selectedPokemon} />}
+        {selectedPokemon && <PokemonInfo selectedPokemon={selectedPokemon} />}
       </div>
     </div>
   )
